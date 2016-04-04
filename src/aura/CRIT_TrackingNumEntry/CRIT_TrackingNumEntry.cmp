@@ -6,9 +6,10 @@
     <aura:attribute name="trOwnerClass" type="String" />
     <aura:attribute name="trDigitsClass" type="String" />
     <aura:attribute name="trItemClass" type="String" />
-    
+    <aura:registerEvent name="assetObjectFoundByTrackingComponent" type="c:assetObjectFoundByTrackingComponent"/>
+
     <ui:inputText aura:id="trackNumOwnerInput" class="{! v.inputClass + ' ' + v.trOwnerClass }" label=""  value="{! v.trNumOwner }" keyup="{!c.handleUpdatedText }" updateOn="keyup" />-
-	<ui:inputNumber aura:id="trackNumDigitsInput" class="{! v.inputClass + ' ' + v.trDigitsClass }" label="" value="{! v.trNumDigits }"  keyup="{!c.handleUpdatedText }" updateOn="keyup" />-
+	<ui:inputText aura:id="trackNumDigitsInput" class="{! v.inputClass + ' ' + v.trDigitsClass }" label="" value="{! v.trNumDigits }"  keyup="{!c.handleUpdatedText }" updateOn="keyup" />-
     <ui:inputText aura:id="trackNumItemInput" class="{! v.inputClass  + ' ' + v.trItemClass }" label="" value="{! v.trNumItem }" keyup="{!c.handleUpdatedText }" updateOn="keyup" />
 
     <!-- insert spinny here -->

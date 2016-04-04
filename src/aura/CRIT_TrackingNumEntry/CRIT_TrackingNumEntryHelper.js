@@ -68,6 +68,14 @@
 			return false;
 		}
 	},
+	sendEvent: function(component, assetObj)
+	{
+		var messageEvent = component.getEvent("assetObjectFoundByTrackingComponent");
+        messageEvent.setParams({
+            "foundAsset": assetObj
+        });
+        messageEvent.fire();
+	},
 	getAssetRecord : function(component, assetName) 
 	{
 		var doGetAssetFromServer = component.get("c.lookupAssetByTrackingNumber"); // call Apex Class
@@ -84,6 +92,8 @@
             	console.log(assetResult);
 
                 component.set("v.assetResult", assetResult );
+                this.sendEvent(component, assetResult);
+
                      this.hideSpinner(component);
             });
        $A.enqueueAction(doGetAssetFromServer);	
