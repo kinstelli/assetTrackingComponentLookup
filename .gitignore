@@ -1,0 +1,9 @@
+debug
+.DS_Store
+config
+aux
+*.sublime-workspace
+*.sublime-project
+node_modules
+my.conf.js
+package.json

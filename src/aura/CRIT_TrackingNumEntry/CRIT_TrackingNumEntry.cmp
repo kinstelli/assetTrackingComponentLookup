@@ -1,0 +1,17 @@
+<aura:component controller="CRIT_TrackingNumLookupController">
+    <aura:attribute name="trNumOwner" type="String" default="C" />
+    <aura:attribute name="trNumDigits" type="Integer" default="" />
+    <aura:attribute name="trNumItem" type="String" default="" />
+    
+    <aura:attribute name="trOwnerClass" type="String" />
+    <aura:attribute name="trDigitsClass" type="String" />
+    <aura:attribute name="trItemClass" type="String" />
+    
+    <ui:inputText aura:id="trackNumOwnerInput" class="{! v.inputClass + ' ' + v.trOwnerClass }" label=""  value="{! v.trNumOwner }" keyup="{!c.handleUpdatedText }" updateOn="keyup" />-
+	<ui:inputNumber aura:id="trackNumDigitsInput" class="{! v.inputClass + ' ' + v.trDigitsClass }" label="" value="{! v.trNumDigits }"  keyup="{!c.handleUpdatedText }" updateOn="keyup" />-
+    <ui:inputText aura:id="trackNumItemInput" class="{! v.inputClass  + ' ' + v.trItemClass }" label="" value="{! v.trNumItem }" keyup="{!c.handleUpdatedText }" updateOn="keyup" />
+
+    <!-- insert spinny here -->
+    <ui:outputText class="invisible" aura:id="spinnyStatus" value="Searching..." />
+
+</aura:component>
