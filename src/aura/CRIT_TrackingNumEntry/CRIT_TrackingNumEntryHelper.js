@@ -103,7 +103,7 @@
 
             	console.log("Returned from Apex with this value:");
             	console.log(assetResult);
-            	if (typeof(assetResult.Name) === 'undefined' || assetResult === null)
+            	if (typeof(assetResult.Name) === 'undefined' )
             	{
             		this.showNotFound(component);
             	}else
