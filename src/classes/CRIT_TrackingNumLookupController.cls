@@ -9,15 +9,12 @@ public class CRIT_TrackingNumLookupController {
             Asset theAsset = new Asset();
             
             //ensure that the given trackingDigit is an Integer
-            String theQuery = 'SELECT Name, SerialNumber, Manufacturer__c, Model__c FROM Asset WHERE Name = :assetName LIMIT 1';
+            String theQuery = 'SELECT Name, SerialNumber, Manufacturer__c, Model__c, Eligible_for_replacement__c FROM Asset WHERE Name = :assetName LIMIT 1';
             
             System.debug(theQuery);
             try {
                // theAsset = [SELECT Name, SerialNumber, Manufacturer__c, Model__c FROM Asset Where TrackingNum_Number__c = :trInt and TrackingNum_Item__c = ':trItem' LIMIT 1];
                 theAsset = database.query(theQuery);
-            }catch(DmlException dmle)
-            {
-                System.debug('There was a database error: ' + dmle);
             }catch(QueryException qe)
             {
                 System.debug('There was a query exception: ' + qe);

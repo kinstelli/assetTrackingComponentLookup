@@ -6,8 +6,18 @@
 	},
 	hideSpinner: function(component)
 	{
-		console.log("hiding spinner");
 		var spinner = component.find("spinnyStatus");
+		$A.util.addClass(spinner, 'invisible');
+	},
+	showNotFound: function(component)
+	{
+		console.log("not found.");
+		var spinner = component.find("notFoundAlert");
+		$A.util.removeClass(spinner, 'invisible');
+	},
+	hideNotFound: function(component)
+	{
+		var spinner = component.find("notFoundAlert");
 		$A.util.addClass(spinner, 'invisible');
 	},
 	allFieldsValid: function(component, event, helper)
@@ -55,9 +65,9 @@
 		}
 
 		//var currentText = event.getSource().get("v.value");
-		if ( errorCount == 0 && trNumOwner.length == 1 && trNumDigits.length > 1 && trNumDigits.length < 8 && trNumItem.length == 2 )
+		if ( errorCount == 0 && trNumOwner.length == 1 && trNumDigits.length > 0 && trNumDigits.length < 8 && trNumItem.length == 2 )
 		{
-			console.log("Doing lookup of: " + trNumOwner + "-" + trNumDigits + '-' + trNumItem );
+			//console.log("Doing lookup of: " + trNumOwner + "-" + trNumDigits + '-' + trNumItem );
 			//helper.populateListOfMatchingValues(component, currentText);
 			//helper.showMenu(component);
 			var returnString =  "" + trNumOwner + "-" + trNumDigits + '-' + trNumItem;
@@ -78,6 +88,9 @@
 	},
 	getAssetRecord : function(component, assetName) 
 	{
+		this.hideNotFound(component);
+
+
 		var doGetAssetFromServer = component.get("c.lookupAssetByTrackingNumber"); // call Apex Class
         var lookupParams = {
         					'assetName': assetName
@@ -90,11 +103,17 @@
 
             	console.log("Returned from Apex with this value:");
             	console.log(assetResult);
+            	if (typeof(assetResult.Name) === 'undefined' || assetResult === null)
+            	{
+            		this.showNotFound(component);
+            	}else
+            	{
+					this.hideNotFound(component);
+            	}
 
                 component.set("v.assetResult", assetResult );
                 this.sendEvent(component, assetResult);
-
-                     this.hideSpinner(component);
+                this.hideSpinner(component);
             });
        $A.enqueueAction(doGetAssetFromServer);	
 	}

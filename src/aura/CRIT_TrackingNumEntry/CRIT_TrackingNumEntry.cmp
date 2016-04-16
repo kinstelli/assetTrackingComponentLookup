@@ -1,5 +1,5 @@
 <aura:component controller="CRIT_TrackingNumLookupController">
-    <aura:attribute name="trNumOwner" type="String" default="C" />
+    <aura:attribute name="trNumOwner" type="String" default="" />
     <aura:attribute name="trNumDigits" type="Integer" default="" />
     <aura:attribute name="trNumItem" type="String" default="" />
     
@@ -14,5 +14,6 @@
 
     <!-- insert spinny here -->
     <ui:outputText class="invisible" aura:id="spinnyStatus" value="Searching..." />
+    <ui:outputText class="invisible" aura:id="notFoundAlert" value="Not Found." />
 
 </aura:component>
